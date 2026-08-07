@@ -23,6 +23,22 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index')->with('success', 'Categoría creada correctamente.');
     }
+    
+    public function edit(Category $category)
+    {
+        return view('categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+        ]);
+
+        $category->update($request->only('name'));
+
+        return redirect()->route('categories.index')->with('success', 'Categoría actualizada correctamente.');
+    }
 
     public function destroy(Category $category)
     {

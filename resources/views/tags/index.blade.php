@@ -23,11 +23,14 @@
                         <span class="font-medium bg-gray-100 px-3 py-1 rounded-full text-sm">🏷️ {{ $tag->name }}</span>
                         <span class="text-xs text-gray-500 ml-2">({{ $tag->tasks_count }} tareas)</span>
                     </div>
-                    <form action="{{ route('tags.destroy', $tag) }}" method="POST" onsubmit="return confirm('¿Eliminar etiqueta?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-800 text-sm">Eliminar</button>
-                    </form>
+                    <div class="flex items-center">
+                        <a href="{{ route('tags.edit', $tag) }}" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium mr-3">Editar</a>
+                        <form action="{{ route('tags.destroy', $tag) }}" method="POST" onsubmit="return confirm('¿Eliminar etiqueta?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm">Eliminar</button>
+                        </form>
+                    </div>
                 </li>
             @empty
                 <li class="py-3 text-gray-500 text-center">No hay etiquetas.</li>

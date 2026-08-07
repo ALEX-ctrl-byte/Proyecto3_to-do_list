@@ -23,11 +23,15 @@
                         <span class="font-medium">{{ $category->name }}</span>
                         <span class="text-xs text-gray-500 ml-2">({{ $category->tasks_count }} tareas)</span>
                     </div>
-                    <form action="{{ route('categories.destroy', $category) }}" method="POST" onsubmit="return confirm('¿Eliminar categoría?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-800 text-sm">Eliminar</button>
-                    </form>
+                    <div class="flex items-center space-x-3">
+                        <a href="{{ route('categories.edit', $category) }}" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Editar</a>
+
+                        <form action="{{ route('categories.destroy', $category) }}" method="POST" onsubmit="return confirm('¿Eliminar categoría?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm">Eliminar</button>
+                        </form>
+                    </div>
                 </li>
             @empty
                 <li class="py-3 text-gray-500 text-center">No hay categorías.</li>
