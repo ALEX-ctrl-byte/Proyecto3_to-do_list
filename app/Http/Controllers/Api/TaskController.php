@@ -16,7 +16,7 @@ class TaskController extends Controller
         $tasks = $request->user()
             ->tasks()
             ->with(['category', 'tags'])
-            ->latest()
+            ->oldest()
             ->paginate(10);
 
         return response()->json($tasks);
